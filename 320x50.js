@@ -99,29 +99,110 @@ body {
   </div>
 </div>
 `;
-	const map = {
-	    title: 'hb_native_title',
-	    body: 'hb_native_body',
-	    body2: 'hb_native_body2',
-	    privacyLink: 'hb_native_privacy',
-	    sponsoredBy: 'hb_native_brand',
-	    image: 'hb_native_image',
-	    icon: 'hb_native_icon',
-	    clickUrl: 'hb_native_linkurl',
-	    displayUrl: 'hb_native_displayurl',
-	    cta: 'hb_native_cta',
-	    rating: 'hb_native_rating',
-	    address: 'hb_native_address',
-	    downloads: 'hb_native_downloads',
-	    likes: 'hb_native_likes',
-	    phone: 'hb_native_phone',
-	    price: 'hb_native_price',
-	    salePrice: 'hb_native_saleprice'
-	}
-	for (var i = 0; i < data.length; i++){
-		if (map[data[i].key]) {
-			template = template.replaceAll("##"+map[data[i].key]+"##",data[i].value);
-		}
-	}
-	return template;
+
+// Map values
+const map = {
+      title: 'hb_native_title',
+      body: 'hb_native_body',
+      body2: 'hb_native_body2',
+      privacyLink: 'hb_native_privacy',
+      sponsoredBy: 'hb_native_brand',
+      image: 'hb_native_image',
+      icon: 'hb_native_icon',
+      clickUrl: 'hb_native_linkurl',
+      displayUrl: 'hb_native_displayurl',
+      cta: 'hb_native_cta',
+      rating: 'hb_native_rating',
+      address: 'hb_native_address',
+      downloads: 'hb_native_downloads',
+      likes: 'hb_native_likes',
+      phone: 'hb_native_phone',
+      price: 'hb_native_price',
+      salePrice: 'hb_native_saleprice'
+}
+
+// Put all existing keys in an array
+var dataKeys = [];
+for (var i = 0; i < data.length; i++){
+  dataKeys.push(data[i].key)
+}
+
+// If some values are missing, put some defaults
+if(dataKeys.indexOf("title") < 0){
+  data.push({key: "title", value: "Learn more!"})
+}
+
+if(dataKeys.indexOf("body") < 0){
+  data.push({key: "body", value: ""})
+}
+
+if(dataKeys.indexOf("body2") < 0){
+  data.push({key: "body2", value: ""})
+}
+
+if(dataKeys.indexOf("privacyLink") < 0){
+  data.push({key: "privacyLink", value: "#"})
+}
+
+if(dataKeys.indexOf("sponsoredBy") < 0){
+  data.push({key: "sponsoredBy", value: "Learn more!"})
+}
+
+if(dataKeys.indexOf("image") < 0){
+  data.push({key: "image", value: "https://cdn.jsdelivr.net/gh/bozghiyy/native-renderer@latest/w.png"})
+}
+
+if(dataKeys.indexOf("icon") < 0){
+  data.push({key: "icon", value: "https://cdn.jsdelivr.net/gh/bozghiyy/native-renderer@latest/w.png"})
+}
+
+if(dataKeys.indexOf("clickUrl") < 0){
+  data.push({key: "clickUrl", value: "#"})
+}
+
+if(dataKeys.indexOf("displayUrl") < 0){
+  data.push({key: "displayUrl", value: "Learn more!"})
+}
+
+if(dataKeys.indexOf("cta") < 0){
+  data.push({key: "cta", value: "Learn more!"})
+}
+
+if(dataKeys.indexOf("rating") < 0){
+  data.push({key: "rating", value: ""})
+}
+
+if(dataKeys.indexOf("address") < 0){
+  data.push({key: "address", value: ""})
+}
+
+if(dataKeys.indexOf("downloads") < 0){
+  data.push({key: "downloads", value: ""})
+}
+
+if(dataKeys.indexOf("likes") < 0){
+  data.push({key: "likes", value: ""})
+}
+
+if(dataKeys.indexOf("phone") < 0){
+  data.push({key: "phone", value: ""})
+}
+
+if(dataKeys.indexOf("price") < 0){
+  data.push({key: "price", value: ""})
+}
+
+if(dataKeys.indexOf("salePrice") < 0){
+  data.push({key: "salePrice", value: ""})
+}
+
+// Make the replacements
+for (var i = 0; i < data.length; i++){
+    if (map[data[i].key]) {
+      template = template.replaceAll("##"+map[data[i].key]+"##",data[i].value);
+    }
+}
+
+// Return template
+return template;
 }
